@@ -3,7 +3,7 @@
 ## Initial Project Structure
 
 ```
-/courses-platform
+E-learning_Platform/
 │
 ├── backend/
 │   ├── controllers/
