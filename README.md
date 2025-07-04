@@ -10,7 +10,6 @@ E-learning_Platform/
 │   ├── routes/
 │   ├── models/
 │   ├── validation/
-│   ├── data/
 │
 ├── frontend/
 ├── docs/
