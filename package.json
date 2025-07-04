@@ -1,0 +1,24 @@
+{
+  "name": "e-learning_platform",
+  "version": "1.0.0",
+  "description": "```\r E-learning_Platform/\r │\r ├── backend/\r │   ├── controllers/\r │   ├── routes/\r │   ├── models/\r │   ├── validation/\r │\r ├── frontend/\r ├── docs/\r ├── package.json\r ├── README.md\r └── LICENSE\r ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moazragab12/E-learning_Platform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/moazragab12/E-learning_Platform/issues"
+  },
+  "homepage": "https://github.com/moazragab12/E-learning_Platform#readme",
+  "dependencies": {
+    "mongoose": "^8.16.1"
+  }
+}
