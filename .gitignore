@@ -3,3 +3,5 @@ node_modules/
 # Editor/IDE settings
 .vscode/
 .idea/
+#env
+.env/
