@@ -1,4 +1,4 @@
-const { Feedback } = require('../models');
+const { Feedback } = require('../models/updatedSchema');
 
 exports.submitFeedback = async (req, res) => {
   try {
