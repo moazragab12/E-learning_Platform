@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/moazragab12/E-learning_Platform#readme",
   "dependencies": {
-    "mongoose": "^8.16.1"
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "nodeman": "^1.1.2"
   }
 }
