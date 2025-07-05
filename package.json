@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/moazragab12/E-learning_Platform#readme",
   "dependencies": {
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
     "mongoose": "^8.16.1"
   }
 }
