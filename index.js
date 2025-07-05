@@ -1,28 +1,25 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config();
+const enrollmentRoutes = require("./routes/enrollment");
+const feedbackRoutes = require("./routes/feedback");
+const courseRoutes = require("./routes/courseRoutes");
+const lessonRoutes = require("./routes/lessonRoutes");
 
 const app = express();
 app.use(express.json());
 
-const courseRoutes = require("./routes/courseRoutes");
-app.use("/api/courses", courseRoutes);
-
-const lessonRoutes = require("./routes/lessonRoutes");
-app.use("/api/lessons", lessonRoutes);
-
-app.get("/", (req, res) => {
-  res.send("📚 Course API is running!");
-});
-
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("✅ Connected to MongoDB");
-    app.listen(6000, () => {
-      console.log("🚀 Server running on http://localhost:6000");
-    });
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err.message);
-  });
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("DB connection error:", err));
+
+app.use("/api/enrollments", enrollmentRoutes);
+app.use("/api/feedback", feedbackRoutes);
+app.use("/api/courses", courseRoutes);
+app.use("/api/lessons", lessonRoutes);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
