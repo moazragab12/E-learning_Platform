@@ -1,13 +1,43 @@
-require('dotenv').config(); // Load .env variables
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const authRoutes = require('./routes/authRoutes');
+const enrollmentRoutes = require('./routes/enrollment');
+const feedbackRoutes = require('./routes/feedback');
+const courseRoutes = require('./routes/courseRoutes');
+const lessonRoutes = require('./routes/lessonRoutes');
+const userRoutes = require('./routes/users');
 
 const app = express();
-app.use(express.json());
-const userRoutes = require('./routes/users');
-app.use('/api/users', userRoutes);
 
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("DB connection error:", err));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("DB connection error:", err));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/enrollments', enrollmentRoutes);
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/lessons', lessonRoutes);
+app.use('/api/users', userRoutes);
 
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
