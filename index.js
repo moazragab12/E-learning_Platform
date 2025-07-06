@@ -7,6 +7,7 @@ const enrollmentRoutes = require('./routes/enrollment');
 const feedbackRoutes = require('./routes/feedback');
 const courseRoutes = require('./routes/courseRoutes');
 const lessonRoutes = require('./routes/lessonRoutes');
+const userRoutes = require('./routes/users');
 
 const app = express();
 
@@ -36,6 +37,20 @@ app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/lessons', lessonRoutes);
+app.use('/api/users', userRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Connect to MongoDB Atlas
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => {
+        console.log('Connected to MongoDB Atlas');
+
+        // Start server after successful DB connection
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => {
+            console.log(` Server running on http://localhost:${PORT}`);
+        });
+    })
+    .catch(err => console.error(' MongoDB connection error:', err));
