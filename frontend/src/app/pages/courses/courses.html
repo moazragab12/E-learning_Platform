@@ -16,6 +16,14 @@
         <button mat-button mat-raised-button color="primary" class="view-btn">
           View Details
         </button>
+        <button
+          class="feedback-btn"
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/student/courses', course._id, 'feedback']"
+        >
+          Add Feedback
+        </button>
       </mat-card-actions>
     </div>
   </mat-card>
