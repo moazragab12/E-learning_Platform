@@ -18,7 +18,8 @@ export class RegisterComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      role: ['student', Validators.required]
     });
   }
 
@@ -30,7 +31,6 @@ export class RegisterComponent {
           localStorage.setItem('token', res.data.token);
         },
         error: err =>{
-           alert('Registration failed: ' + err.error.message)
            alert('Registration failed: ' + (err.error?.message || JSON.stringify(err.error) || err.message || 'Unknown error'));
           }
       });

@@ -6,6 +6,7 @@ exports.createLesson = async (req, res) => {
     const lesson = await Lesson.create(req.body);
     res.status(201).json(lesson);
   } catch (err) {
+    console.log('Create Lesson Error:', err.message, 'Request Body:', req.body);
     res.status(400).json({ error: err.message });
   }
 };

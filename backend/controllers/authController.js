@@ -4,9 +4,9 @@ const { validationResult } = require('express-validator');
 const { User } = require('../models/dbModels');
 
 // Generate JWT Token
-const generateToken = (userId) => {
+const generateToken = (user) => {
   return jwt.sign(
-    { userId },
+    { userId: user._id, role: user.role },
     process.env.JWT_SECRET,
     { expiresIn: '1h' }
   );
@@ -35,7 +35,7 @@ const register = async (req, res) => {
 
     await user.save();
 
-    const token = generateToken(user._id);
+    const token = generateToken(user);
     const userResponse = {
       _id: user._id,
       email: user.email,
@@ -65,7 +65,7 @@ const login = async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
     if (!isPasswordValid) return res.status(401).json({ status: 'fail', message: 'Invalid email or password' });
 
-    const token = generateToken(user._id);
+    const token = generateToken(user);
     const userResponse = {
       _id: user._id,
       email: user.email,
