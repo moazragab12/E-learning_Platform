@@ -1,0 +1,15 @@
+.star-rating {
+  display: flex;
+  gap: 8px;
+}
+
+.star {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.star svg {
+  width: 32px;
+  height: 32px;
+  /* display: block; */
+}

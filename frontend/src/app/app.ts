@@ -7,6 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [RouterModule, HttpClientModule],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrls: ['./app.css'],
 })
 export class AppComponent {}
