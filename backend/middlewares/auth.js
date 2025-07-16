@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/dbModels');
+const { User, Course, Lesson } = require('../models/dbModels');
 
 // Middleware to verify JWT token
 const authenticateToken = async (req, res, next) => {
@@ -79,9 +79,33 @@ const authorizeEnrollment = async (req, res, next) => {
   }
 };
 
+const authorizeCourseOwner = async (req, res, next) => {
+  try {
+    // Try to get courseId from params, body, or lesson object
+    let courseId = req.params.courseId || req.body.courseId || req.params.id;
+    // For lesson update/delete, lessonId is in params.id, need to fetch lesson to get courseId
+    if (!courseId && req.baseUrl.includes('lessons') && req.params.id) {
+      const { Lesson } = require('../models/dbModels');
+      const lesson = await Lesson.findById(req.params.id);
+      if (!lesson) return res.status(404).json({ status: 'fail', message: 'Lesson not found' });
+      courseId = lesson.courseId;
+    }
+    if (!courseId) return res.status(400).json({ status: 'fail', message: 'Course ID required' });
+    const course = await Course.findById(courseId);
+    if (!course) return res.status(404).json({ status: 'fail', message: 'Course not found' });
+    if (course.instructorId.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ status: 'fail', message: 'Only the course owner can perform this action' });
+    }
+    next();
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: 'Authorization error' });
+  }
+};
+
 module.exports = {
   authenticateToken,
   authorizeRole,
   authorizeInstructor,
-  authorizeEnrollment
+  authorizeEnrollment,
+  authorizeCourseOwner
 }; 

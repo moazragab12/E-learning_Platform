@@ -1,0 +1,60 @@
+<ng-container *ngIf="!isLoggedIn">
+  <nav>
+    <a routerLink="/login">Login</a> |
+    <a routerLink="/register">Register</a>
+  </nav>
+</ng-container>
+
+<h2>Course Content Management</h2>
+
+<div *ngIf="isInstructor && isCourseOwner">
+  <form *ngIf="editingCourse" [formGroup]="courseEditForm" (ngSubmit)="saveCourseEdit()">
+    <label>Title:
+      <input formControlName="title" />
+    </label>
+    <label>Description:
+      <textarea formControlName="description"></textarea>
+    </label>
+    <label>Categories (comma separated):
+      <input formControlName="categories" />
+    </label>
+    <button type="submit">Save</button>
+    <button type="button" (click)="cancelEditCourse()">Cancel</button>
+  </form>
+  <ng-container *ngIf="!editingCourse">
+    <button (click)="editCourse()">Edit Course</button>
+    <button (click)="deleteCourse()">Delete Course</button>
+  </ng-container>
+</div>
+
+<button *ngIf="isInstructor && isCourseOwner" (click)="goToAddLesson()">Add Lesson</button>
+
+<form *ngIf="isInstructor" [formGroup]="lessonForm" (ngSubmit)="onSubmit()">
+  <ng-container *ngIf="editingLessonId">
+    <label>Title:
+      <input formControlName="title" />
+    </label>
+    <label>Content:
+      <textarea formControlName="content"></textarea>
+    </label>
+    <label>Order:
+      <input type="number" formControlName="order" />
+    </label>
+    <label>Resources (JSON array):
+      <textarea formControlName="resources"></textarea>
+    </label>
+  </ng-container>
+  <button type="submit" *ngIf="editingLessonId">Confirm</button>
+  <button type="button" (click)="cancelEdit()" *ngIf="editingLessonId">Cancel</button>
+</form>
+
+<hr />
+
+<ul>
+  <li *ngFor="let lesson of lessons">
+    <strong>{{ lesson.title }}</strong> (Order: {{ lesson.order }})<br />
+    <div [innerHTML]="lesson.content"></div>
+    <button *ngIf="isInstructor && myUserId && lesson.courseId && lesson.courseId.instructorId && lesson.courseId.instructorId.toString() === myUserId" (click)="editLesson(lesson)">Edit</button>
+    <button *ngIf="isInstructor && myUserId && lesson.courseId && lesson.courseId.instructorId && lesson.courseId.instructorId.toString() === myUserId" (click)="deleteLesson(lesson._id)">Delete</button>
+  </li>
+</ul> 

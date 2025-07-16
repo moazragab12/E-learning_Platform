@@ -1,7 +1,23 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <input formControlName="firstName" placeholder="First Name" />
-  <input formControlName="lastName" placeholder="Last Name" />
-  <input formControlName="email" placeholder="Email" type="email" />
-  <input formControlName="password" placeholder="Password" type="password" />
+  <label>First Name:
+    <input formControlName="firstName" />
+  </label>
+  <label>Last Name:
+    <input formControlName="lastName" />
+  </label>
+  <label>Email:
+    <input formControlName="email" />
+  </label>
+  <label>Password:
+    <input type="password" formControlName="password" />
+  </label>
+  <div>
+    <label>
+      <input type="radio" formControlName="role" value="student" /> Student
+    </label>
+    <label>
+      <input type="radio" formControlName="role" value="instructor" /> Instructor
+    </label>
+  </div>
   <button type="submit">Register</button>
 </form>
