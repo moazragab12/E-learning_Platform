@@ -54,3 +54,17 @@ exports.deleteCourse = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Get top courses by rating
+exports.getTopCourses = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 6;
+    const courses = await Course.find({ published: true })
+      .populate('instructorId', 'profile.firstName profile.lastName')
+      .sort({ averageRating: -1, feedbackCount: -1 })
+      .limit(limit);
+    res.json(courses);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

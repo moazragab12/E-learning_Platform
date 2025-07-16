@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
 const courseSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
+  imageUrl: { type: String, default: '' }, // Course thumbnail/cover image
   instructorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

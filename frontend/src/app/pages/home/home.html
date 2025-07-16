@@ -1,0 +1,70 @@
+<div class="container my-5">
+
+    <!-- Features Section -->
+    <mat-grid-list cols="3" gutterSize="16px" rowHeight="fit">
+        <mat-grid-tile>
+            <div class="feature-tile blue-tile">
+                <mat-icon class="feature-icon" color="primary">laptop</mat-icon>
+                <h3>Browse Courses</h3>
+                <p>Explore a variety of courses across multiple topics and skills.</p>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="feature-tile green-tile">
+                <mat-icon class="feature-icon" color="accent">bar_chart</mat-icon>
+                <h3>Track Progress</h3>
+                <p>Keep an eye on your learning journey and milestones.</p>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="feature-tile yellow-tile">
+                <mat-icon class="feature-icon" color="warn">groups</mat-icon>
+                <h3>Learn Together</h3>
+                <p>Connect with fellow learners and share your knowledge.</p>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <!-- Popular Courses -->
+    <h2 class="mb-4 mt-5">Popular Courses</h2>
+
+    <div *ngIf="loading" class="text-center">
+        <p>Loading courses...</p>
+    </div>
+
+    <div *ngIf="error" class="text-center text-danger">
+        <p>{{ error }}</p>
+    </div>
+
+    <div class="courses-grid" *ngIf="!loading">
+        <mat-card *ngFor="let course of courses" class="course-card colored-card" appearance="outlined">
+            <div class="course-image-container" *ngIf="course.imageUrl">
+                <img [src]="course.imageUrl" [alt]="course.title" class="course-image" (error)="onImageError($event)"
+                    loading="lazy">
+            </div>
+            <div class="course-image-placeholder" *ngIf="!course.imageUrl">
+                <mat-icon class="placeholder-icon">book</mat-icon>
+            </div>
+            <mat-card-content class="course-content">
+                <mat-card-title>{{ course.title }}</mat-card-title>
+                <mat-card-subtitle *ngIf="course.instructorId">
+                    Instructor: {{ course.instructorId.profile.firstName }} {{ course.instructorId.profile.lastName }}
+                </mat-card-subtitle>
+                <p class="course-description">{{ course.description }}</p>
+                <div class="course-meta">
+                    <span class="rating" *ngIf="course.averageRating > 0">
+                        <mat-icon>star</mat-icon>
+                        {{ course.averageRating.toFixed(1) }} ({{ course.feedbackCount }} reviews)
+                    </span>
+                    <span class="categories" *ngIf="course.categories && course.categories.length > 0">
+                        {{ course.categories.join(', ') }}
+                    </span>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="accent">View Course</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>
