@@ -1,0 +1,36 @@
+.courses-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 24px;
+}
+h2 {
+  color: #005bcc;
+  margin-left: 25px;
+}
+img {
+  height: 50%;
+}
+.content {
+  padding-top: 10px;
+}
+.course-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.title,
+.sub-title {
+  padding-left: 15px;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #005bcc;
+}
+.view-btn {
+  margin-top: 10px;
+}
+.feedback-btn {
+  margin-left: 20px;
+  margin-bottom: -5px;
+}

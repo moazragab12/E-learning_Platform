@@ -1,0 +1,30 @@
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  color: #005cbb;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.rating {
+  margin-bottom: 16px;
+  display: flex;
+  column-gap: 20px;
+}
+
+.rating-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 16px;
+}
