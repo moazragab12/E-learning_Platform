@@ -16,12 +16,12 @@ const generateToken = (userId) => {
 const register = async (req, res) => {
   try {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) res.status(400).json({ status: 'fail', message: errors.array() });
+    if (!errors.isEmpty()) return res.status(400).json({ status: 'fail', message: errors.array() });
 
     const { email, password, firstName, lastName, role = 'student' } = req.body;
 
     const existingUser = await User.findOne({ email });
-    if (existingUser) res.status(400).json({ status: 'fail', message: 'User with this email already exists' });
+    if (existingUser) return res.status(400).json({ status: 'fail', message: 'User with this email already exists' });
 
     const saltRounds = 12;
     const passwordHash = await bcrypt.hash(password, saltRounds);
@@ -55,15 +55,15 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) res.status(400).json({ status: 'fail', message: errors.array() });
+    if (!errors.isEmpty()) return res.status(400).json({ status: 'fail', message: errors.array() });
 
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) res.status(401).json({ status: 'fail', message: 'Invalid email or password' });
+    if (!user) return res.status(401).json({ status: 'fail', message: 'Invalid email or password' });
 
     const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
-    if (!isPasswordValid) res.status(401).json({ status: 'fail', message: 'Invalid email or password' });
+    if (!isPasswordValid) return res.status(401).json({ status: 'fail', message: 'Invalid email or password' });
 
     const token = generateToken(user._id);
     const userResponse = {

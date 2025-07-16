@@ -27,9 +27,12 @@ export class RegisterComponent {
       this.auth.register(this.registerForm.value).subscribe({
         next: (res: any) => {
           alert('Registration successful');
-          localStorage.setItem('token', res.token);
+          localStorage.setItem('token', res.data.token);
         },
-        error: err => alert('Registration failed: ' + err.error.message)
+        error: err =>{
+           alert('Registration failed: ' + err.error.message)
+           alert('Registration failed: ' + (err.error?.message || JSON.stringify(err.error) || err.message || 'Unknown error'));
+          }
       });
     }
   }

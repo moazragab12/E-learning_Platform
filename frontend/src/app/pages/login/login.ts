@@ -26,7 +26,7 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe({
         next: (res: any) => {
           alert('Login successful');
-          localStorage.setItem('token', res.token);
+          localStorage.setItem('token', res.data.token);
         },
         error: err => alert('Login failed: ' + err.error.message)
       });
