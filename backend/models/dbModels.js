@@ -29,6 +29,7 @@ const courseSchema = new mongoose.Schema({
     required: true,
   },
   image: { type: String },
+  instructorName: { type: String },
   categories: [{ type: String }],
   published: { type: Boolean, default: false },
   averageRating: { type: Number, default: 0 },
