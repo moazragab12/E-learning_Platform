@@ -1,13 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Frontend</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
-</html>
+<h1>EduLearn</h1>
+
+<nav *ngIf="router.url !== '/home'">
+  <a routerLink="/login">Login</a> |
+  <a routerLink="/register">Register</a>
+</nav>
+
+<a routerLink="/home">Home</a>
+<nav *ngIf="router.url !== '/login' && router.url !== '/register'">
+  <a routerLink="/login">Logout</a>
+
+</nav>
+
+
+
+<hr />
+
+<router-outlet></router-outlet>
