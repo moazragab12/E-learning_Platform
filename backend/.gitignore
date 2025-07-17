@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+package-lock.json/
+package.json/
+# Editor/IDE settings
+.vscode/
+.idea/
+#env
+<<<<<<< HEAD
+.env/
+=======
+.env/
+>>>>>>> 6b847a7c95a93de20415e655dd6f039da8de85ec

@@ -1,0 +1,13 @@
+<header class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/home">EduLearn</a>
+  </div>
+
+  <nav class="navbar-links">
+    <a *ngIf="router.url !== '/home'" routerLink="/login">Login</a>
+    <a *ngIf="router.url !== '/home'" routerLink="/register">Register</a>
+    <a *ngIf="router.url !== '/login' && router.url !== '/register'" routerLink="/logout">Logout</a>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>

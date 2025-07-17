@@ -1,0 +1,14 @@
+<h2>Add Course</h2>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <label>Title:
+    <input formControlName="title" />
+  </label>
+  <label>Description:
+    <textarea formControlName="description"></textarea>
+  </label>
+  <label>Categories (comma separated):
+    <input formControlName="categories" />
+  </label>
+  <button type="submit" [disabled]="loading">Add Course</button>
+  <span *ngIf="loading">Adding...</span>
+</form> 

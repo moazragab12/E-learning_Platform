@@ -1,0 +1,26 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <label>First Name</label>
+      <input formControlName="firstName" type="text" placeholder="First Name" />
+
+      <label>Last Name</label>
+      <input formControlName="lastName" type="text" placeholder="Last Name" />
+
+      <label>Email</label>
+      <input formControlName="email" type="email" placeholder="Email" />
+
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="Password" />
+
+      <div class="radio-group">
+        <label><input type="radio" formControlName="role" value="student" /> Student</label>
+        <label><input type="radio" formControlName="role" value="instructor" /> Instructor</label>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.feature-tile {
+    text-align: center;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.feature-tile {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.blue-tile {
+    background-color: #2196f3;
+    /* Material blue */
+}
+
+.green-tile {
+    background-color: #4caf50;
+    /* Material green */
+}
+
+.yellow-tile {
+    background-color: #ff9800;
+    /* Material orange */
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.colored-card {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.course-meta {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #ff9800;
+}
+
+.rating mat-icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+.categories {
+    font-style: italic;
+    color: #888;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-danger {
+    color: #f44336;
+}
+
+/* Course Image Styles */
+.course-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-image:hover {
+    transform: scale(1.05);
+}
+
+.course-image-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-radius: 8px 8px 0 0;
+}
+
+.placeholder-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+    color: #666;
+}
+
+.course-content {
+    padding: 16px;
+}
+
+.course-description {
+    margin: 10px 0;
+    color: #666;
+    line-height: 1.4;
+}
+
+.course-card {
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
