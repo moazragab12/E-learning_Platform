@@ -163,10 +163,6 @@ The frontend can be deployed to:
 
 This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
-
-- **Moaz Ragab** - [@moazragab12](https://github.com/moazragab12)
-
 ## 🙏 Acknowledgments
 
 - Angular team for the excellent framework
